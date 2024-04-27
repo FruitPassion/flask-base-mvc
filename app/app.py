@@ -13,7 +13,6 @@ def create_app(config=None):
     from flask_wtf import CSRFProtect
     from utils import app_utils, manage_controller
     from utils.manage_config import check_config, read_config
-    from utils.manage_error import LogOpeningError
 
     # Check if a configuration is requested
     # If not, the default configuration is used
