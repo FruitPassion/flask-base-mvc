@@ -3,6 +3,7 @@ import os
 import sys
 
 from utils import manage_requirements
+
 manage_requirements.checking()
 
 
@@ -10,10 +11,9 @@ def create_app(config=None):
     from flask import Flask
     from flask_session import Session
     from flask_wtf import CSRFProtect
-    from utils import app_utils
+    from utils import app_utils, manage_controller
     from utils.manage_config import check_config, read_config
     from utils.manage_error import LogOpeningError
-    from utils import manage_controller
 
     # Check if a configuration is requested
     # If not, the default configuration is used
@@ -43,7 +43,7 @@ def create_app(config=None):
     app.config.from_object(f"config.{config.capitalize()}Config")
 
     # Import all controllers
-    controller_dir = os.path.join(os.path.dirname(__file__), 'controller')
+    controller_dir = os.path.join(os.path.dirname(__file__), "controller")
     manage_controller.import_all(controller_dir, app)
 
     # CRSF protection activation
