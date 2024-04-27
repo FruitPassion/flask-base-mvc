@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "base-flask"
+version = "0.1.0"
+description = ""
+authors = ["FruitPassion <gamehotdl@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "2.3.3"
+configparser-crypt = "^1.1.0"
+bcrypt = "^4.1.2"
+flake8 = "^7.0.0"
+black = "^24.4.2"
+isort = "^5.13.2"
+flask-wtf = "^1.2.1"
+flask-session = "^0.8.0"
+flask-sqlalchemy = "^3.1.1"
+jsbeautifier = "^1.15.1"
+cssbeautifier = "^1.15.1"
+djlint = "^1.34.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,20 @@
+{
+  "400" : {
+    "description": "Invalid input."
+  },
+  "403" : {
+    "description": "Unauthorized access."
+  },
+  "404" : {
+    "description": "Page not found."
+  },
+  "405": {
+    "description": "Unsupported method."
+  },
+  "500" : {
+    "description": "Internal server error."
+  },
+  "503" : {
+    "description": "Service unavailable."
+  }
+}

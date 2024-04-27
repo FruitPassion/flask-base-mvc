@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+{% block title %}{{ titre }}{% endblock %}
+{% block body %}
+    <h1>{{ erreur }}</h1>
+    <h1>{{ description }}</h1>
+    {% if config == "dev" %}
+        <div class="w-75 px-5 border border-primary m-auto">
+            <p class="pt-4">{{ description_plus|safe }}</p>
+        </div>
+    {% else %}
+        <div class="text-center">
+            <!--<img src="{{ url_for('static', filename='images/error.png') }}"
+     alt="image"
+     class="rounded">-->
+        </div>
+    {% endif %}
+{% endblock %}
