@@ -32,11 +32,13 @@ def create_app(config=None):
     # Application creation
     app = Flask(__name__, template_folder="view", static_folder="static")
 
-    # Reset logs files
-    if open("logs/error.log", "w").close():
-        raise LogOpeningError("Impossible d'ouvrir le fichier de log")
-    if open("logs/access.log", "w").close():
-        raise LogOpeningError("Impossible d'ouvrir le fichier de log")
+    try:
+        open("logs/error.log", "w").close()
+        open("logs/access.log", "w").close()
+    except FileNotFoundError:
+        os.mkdir("logs")
+        open("logs/error.log", "w").close()
+        open("logs/access.log", "w").close()
 
     # Load the configuration
     app.config.from_object(f"config.{config.capitalize()}Config")
