@@ -2,7 +2,8 @@
 import os
 import sys
 
-from app.utils import manage_requirements
+from utils import manage_requirements
+manage_requirements.checking()
 
 
 def create_app(config=None):
@@ -12,6 +13,7 @@ def create_app(config=None):
     from utils import app_utils
     from utils.manage_config import check_config, read_config
     from utils.manage_error import LogOpeningError
+    from utils import manage_controller
 
     # Check if a configuration is requested
     # If not, the default configuration is used
@@ -37,14 +39,12 @@ def create_app(config=None):
     if open("logs/access.log", "w").close():
         raise LogOpeningError("Impossible d'ouvrir le fichier de log")
 
-    # Chargement de la configuration dev ou prod
+    # Load the configuration
     app.config.from_object(f"config.{config.capitalize()}Config")
 
-    # Import controller
-    # from controller.auth import auth
-
-    # Controller registration
-    # app.register_blueprint(auth)
+    # Import all controllers
+    controller_dir = os.path.join(os.path.dirname(__file__), 'controller')
+    manage_controller.import_all(controller_dir, app)
 
     # CRSF protection activation
     csrf = CSRFProtect()
@@ -72,7 +72,8 @@ def create_app(config=None):
 # Appel principal pour lancer l'application
 if __name__ == "__main__":
     try:
-        manage_requirements.checking()
         create_app(sys.argv[1]).run(host="0.0.0.0")
     except IndexError:
-        raise ValueError("Argument de lancement manquant (dev, test ou prod)")
+        raise ValueError(
+            "The configuration requested is not valid (must be dev, prod, test)"
+        )
