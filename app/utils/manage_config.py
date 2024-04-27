@@ -11,8 +11,7 @@ def check_config(config):
     """
     if config not in ["dev", "prod", "test"]:
         raise ConfigurationError(
-            "The configuration requested is\
-                                 not valid (must be dev, prod, test)"
+            "The configuration requested is not valid (must be dev, prod, test)"
         )
     return True
 
