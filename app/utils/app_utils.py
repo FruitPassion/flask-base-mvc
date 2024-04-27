@@ -3,9 +3,8 @@ import logging
 import os
 
 from flask import render_template, url_for
+from utils.manage_error import logging_erreur
 from werkzeug.exceptions import HTTPException
-
-from app.utils.manage_error import logging_erreur
 
 
 def rewrite_url(app):
