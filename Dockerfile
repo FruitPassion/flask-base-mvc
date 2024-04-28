@@ -10,6 +10,8 @@ RUN pip install poetry && \
 
 COPY . .
 
+RUN python app/db_init.py
+
 EXPOSE 5000
 
 CMD ["python", "app.py", "prod"]
